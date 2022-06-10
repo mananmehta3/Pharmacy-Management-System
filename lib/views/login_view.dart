@@ -43,6 +43,7 @@ class _LoginViewState extends State<LoginView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
                     controller: _email,

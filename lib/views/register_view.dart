@@ -41,6 +41,7 @@ class _RegisterViewState extends State<RegisterView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
                     controller: _email,
