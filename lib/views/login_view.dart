@@ -87,7 +87,8 @@ class _LoginViewState extends State<LoginView> {
                           builder: (BuildContext context) {
                             return Expanded(
                               child: AlertDialog(
-                                title: const Text('User not found'),
+                                title: const Text(
+                                    'Email or Password is inncorect'),
                                 content: const Text('Register new User'),
                                 actions: [
                                   TextButton(

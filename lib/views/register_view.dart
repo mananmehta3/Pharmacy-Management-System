@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../firebase_options.dart';
 import 'login_view.dart';
@@ -68,9 +69,40 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredential = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: email, password: password);
+                      try {
+                        await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        MaterialPageRoute(
+                            builder: (context) => const LoginView());
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'email-already-in-use') {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Expanded(
+                                child: AlertDialog(
+                                  title: const Text('User Already Exists'),
+                                  content: const Text('Login here'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () async {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginView()),
+                                        );
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        }
+                      }
                     },
                     child: const Text('Register'),
                   ),
