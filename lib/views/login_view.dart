@@ -123,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                         );
                       },
                       child:
-                          const Text('Don\'t have an account, Register here'))
+                          const Text('Don\'t have an account, Register here')),
                 ],
               );
             default:

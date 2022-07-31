@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import '../firebase_options.dart';
 import 'login_view.dart';
 
@@ -16,11 +14,13 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final TextEditingController _name;
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+    _name = TextEditingController();
     super.initState();
   }
 
@@ -28,9 +28,11 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _name.dispose();
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Register')),
@@ -44,6 +46,15 @@ class _RegisterViewState extends State<RegisterView> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  TextField(
+                    controller: _name,
+                    textAlign: TextAlign.center,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    keyboardType: TextInputType.name,
+                    decoration:
+                        const InputDecoration(hintText: 'Enter your name here'),
+                  ),
                   TextField(
                     controller: _email,
                     textAlign: TextAlign.center,
@@ -69,10 +80,14 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
+                      final name = _name.text;
                       try {
-                        await FirebaseAuth.instance
+                        UserCredential userCredential = await FirebaseAuth
+                            .instance
                             .createUserWithEmailAndPassword(
                                 email: email, password: password);
+                        User user = userCredential.user!;
+                        user.updateDisplayName(name);
                         MaterialPageRoute(
                             builder: (context) => const LoginView());
                       } on FirebaseAuthException catch (e) {
