@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learningdart/views/transactions_view.dart';
 import 'employee_information_view.dart';
+import 'login_view.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Inventory')),
+        appBar: AppBar(
+            title: const Text('Inventory'), automaticallyImplyLeading: false),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -70,6 +72,24 @@ class _SearchViewState extends State<SearchView> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0, top: 10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TransactionView()));
+                    },
+                    child: const Text(
+                      "Transactions",
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                          fontFamily: 'arial'),
+                    ),
+                  ),
+                ),
               ],
             )),
             Flexible(
@@ -83,10 +103,10 @@ class _SearchViewState extends State<SearchView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const TransactionView()));
+                              builder: (context) => const LoginView()));
                     },
                     child: const Text(
-                      "Transactions",
+                      "Logout",
                       style: TextStyle(
                           fontSize: 15.0,
                           color: Colors.black,
