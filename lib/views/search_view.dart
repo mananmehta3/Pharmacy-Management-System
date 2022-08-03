@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningdart/views/transactions_view.dart';
 import 'employee_information_view.dart';
 
 class SearchView extends StatefulWidget {
@@ -39,6 +40,7 @@ class _SearchViewState extends State<SearchView> {
                   child: TextField(
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: const InputDecoration(
+                      hintText: 'Search for Medicine here',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 12.0, vertical: 13.0),
@@ -70,6 +72,30 @@ class _SearchViewState extends State<SearchView> {
                 ),
               ],
             )),
+            Flexible(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0, top: 10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TransactionView()));
+                    },
+                    child: const Text(
+                      "Transactions",
+                      style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                          fontFamily: 'arial'),
+                    ),
+                  ),
+                ),
+              ],
+            ))
           ],
         ),
         floatingActionButton: FloatingActionButton(
