@@ -69,6 +69,15 @@ class TransactionView extends StatelessWidget {
                           child: Container(
                               color: Colors.white,
                               child: const Center(
+                                  child: Text('Customer/Supplier',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold)))),
+                        ),
+                        TableCell(
+                          child: Container(
+                              color: Colors.white,
+                              child: const Center(
                                   child: Text('Quantity',
                                       style: TextStyle(
                                           fontSize: 20.0,
@@ -78,7 +87,7 @@ class TransactionView extends StatelessWidget {
                           child: Container(
                               color: Colors.white,
                               child: const Center(
-                                  child: Text('Customer/Supplier',
+                                  child: Text('Unit Price',
                                       style: TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold)))),
@@ -117,6 +126,15 @@ class TransactionView extends StatelessWidget {
                                 color: Colors.white,
                                 child: Center(
                                     child: Text(
+                                        storeDocs[i]['Customer/Supplier'],
+                                        style:
+                                            const TextStyle(fontSize: 20.0)))),
+                          ),
+                          TableCell(
+                            child: Container(
+                                color: Colors.white,
+                                child: Center(
+                                    child: Text(
                                         storeDocs[i]['Quantity'].toString(),
                                         style:
                                             const TextStyle(fontSize: 20.0)))),
@@ -126,7 +144,7 @@ class TransactionView extends StatelessWidget {
                                 color: Colors.white,
                                 child: Center(
                                     child: Text(
-                                        storeDocs[i]['Customer/Supplier'],
+                                        storeDocs[i]['Unit Price'].toString(),
                                         style:
                                             const TextStyle(fontSize: 20.0)))),
                           ),

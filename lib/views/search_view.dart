@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learningdart/views/inventory_view.dart';
 import 'package:learningdart/views/transactions_view.dart';
 import 'employee_information_view.dart';
 import 'login_view.dart';
@@ -15,7 +16,7 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text('Inventory'), automaticallyImplyLeading: false),
+            title: const Text('Search'), automaticallyImplyLeading: false),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,7 +63,12 @@ class _SearchViewState extends State<SearchView> {
                 Padding(
                   padding: const EdgeInsets.only(right: 12.0, top: 10),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const InventoryView()));
+                    },
                     child: const Text(
                       "Search",
                       style: TextStyle(
