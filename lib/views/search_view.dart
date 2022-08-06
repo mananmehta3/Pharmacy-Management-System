@@ -12,6 +12,20 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
+  late final TextEditingController _medicine;
+
+  @override
+  void initState() {
+    _medicine = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _medicine.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +55,7 @@ class _SearchViewState extends State<SearchView> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: TextField(
+                    controller: _medicine,
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: const InputDecoration(
                       hintText: 'Search for Medicine here',
@@ -67,7 +82,8 @@ class _SearchViewState extends State<SearchView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const InventoryView()));
+                              builder: (context) =>
+                                  InventoryView(_medicine.text)));
                     },
                     child: const Text(
                       "Search",
