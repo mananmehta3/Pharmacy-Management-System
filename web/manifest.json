@@ -1,11 +1,11 @@
 {
-    "name": "learningdart",
-    "short_name": "learningdart",
+    "name": "Pharmacy Management System",
+    "short_name": "Pharmacy Management System",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "It is a Pharmacy Management System. It allows the employer to register his/her employees and then the employees can login using that credentials. There are two main features of this application. It shows the stock in the inventory and all the transactions made i.e. the medicines that were supplied by the supplier and medicines bought by the customer.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
