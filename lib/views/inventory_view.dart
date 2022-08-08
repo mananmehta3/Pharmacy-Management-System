@@ -16,9 +16,28 @@ class InventoryView extends StatefulWidget {
 
 class _InventoryViewState extends State<InventoryView> {
   late final String _medicineName;
+  late final TextEditingController _numberOfMedicine;
+  late final TextEditingController _customer;
+  late final TextEditingController _supplier;
 
   _InventoryViewState(String medicineName) {
     _medicineName = medicineName;
+  }
+
+  @override
+  void initState() {
+    _numberOfMedicine = TextEditingController();
+    _customer = TextEditingController();
+    _supplier = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _numberOfMedicine.dispose();
+    _customer.dispose();
+    _supplier.dispose();
+    super.dispose();
   }
 
   @override
@@ -72,18 +91,68 @@ class _InventoryViewState extends State<InventoryView> {
           return Scaffold(
               appBar: AppBar(title: Text('Inventory - $_medicineName')),
               body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Quantity - $qty',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold)),
-                  Text('Price per pc - $price',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold))
-                ],
-              ));
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Quantity - $qty',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold)),
+                    Text('Price per pc - $price',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold)),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10),
+                      child: TextFormField(
+                        autofocus: false,
+                        decoration: const InputDecoration(
+                          labelText: 'Number of Pcs.',
+                          labelStyle: TextStyle(fontSize: 20.0),
+                          border: OutlineInputBorder(),
+                          errorStyle:
+                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                        ),
+                        controller: _numberOfMedicine,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter the number of Medicines';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10),
+                      child: TextFormField(
+                        autofocus: false,
+                        decoration: const InputDecoration(
+                          labelText: 'Customer',
+                          labelStyle: TextStyle(fontSize: 20.0),
+                          border: OutlineInputBorder(),
+                          errorStyle:
+                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                        ),
+                        controller: _customer,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 10),
+                      child: TextFormField(
+                        autofocus: false,
+                        decoration: const InputDecoration(
+                          labelText: 'Supplier',
+                          labelStyle: TextStyle(fontSize: 20.0),
+                          border: OutlineInputBorder(),
+                          errorStyle:
+                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                        ),
+                        controller: _supplier,
+                      ),
+                    ),
+                  ]));
         });
   }
 }
